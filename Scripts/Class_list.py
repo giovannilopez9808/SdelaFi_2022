@@ -58,8 +58,8 @@ class city_list:
                 "delta": 0.05,
             },
             "Nuevo_Leon": {
-                "day initial": "2012-01-20",
-                "day final": "2021-12-31",
+                "day initial": "2021-03-10",
+                "day final": "2021-03-27",
                 "city": "Nuevo_Leon",
                 "lon": [-100.50, -99.50],
                 "lat": [24.50, 25.50],
@@ -371,7 +371,9 @@ class Fire_Count:
         # Guardado de la imagen
         filename = "{}.png".format(name)
         filename = join(path, filename)
-        plt.savefig(filename)
+        plt.tight_layout()
+        plt.savefig(filename,
+                    dpi=400)
         plt.clf()
 
     def number_plot(self,
