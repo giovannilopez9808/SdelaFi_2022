@@ -1,7 +1,7 @@
 from Class_list import *
 
 
-def count_data_confidence(data=pd.DataFrame()):
+def count_data_confidence(data: DataFrame):
     """
     Funcion que calcula el porcentaje de valores para cada tipo de dato
     """
@@ -12,7 +12,7 @@ def count_data_confidence(data=pd.DataFrame()):
     return count_confidence
 
 
-def autolabel(ax=plt.subplot(), rects=plt.bar()):
+def autolabel(ax: plt.subplot, rects: plt.bar):
     """
     Funcion que grafica los valores de cada barra
     """
@@ -32,7 +32,7 @@ parameters = {
 # Lectura de los parametros de cada ciudad
 city = city_list(city=parameters["City name"])
 # Lectura de los datos de FIRMS
-FIRMS = FIRMS_data(parameters=city.parameters,
+FIRMS = FIRMS_data(parameters=city.params,
                    select_nominal_data=False)
 # Conteo de datos para cada tipo de dato
 count_confidence = count_data_confidence(FIRMS.data)
@@ -46,5 +46,6 @@ rect[2].set_color("#57cc99")
 ax.set_ylim(0, 100)
 ax.set_ylabel("Frecuencia de intervalo de confianza (%)")
 ax.set_xlabel("nivel de confianza")
-plt.savefig("{}{}".format(city.parameters["path graphics"],
-                          parameters["graphics name"]))
+filename = join(city.params["path graphics"],
+                parameters["graphics name"])
+plt.savefig(filename)

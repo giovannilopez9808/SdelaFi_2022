@@ -1,4 +1,4 @@
-from numpy import array, shape, flipud, round, arange, size, zeros, sum
+from numpy import array, shape, flipud, round, arange, size, zeros, sum, append
 import moviepy.video.io.ImageSequenceClip as Movie_maker
 from pandas import DataFrame, read_csv, to_datetime
 import matplotlib.pyplot as plt
@@ -164,6 +164,9 @@ class FIRMS_data:
         """
         self.data = self.data[self.data["confidence"] == "n"]
 
+    def get_data_from_date(self, date: str) -> DataFrame:
+        return self.data.loc[date].copy()
+
 
 class Fire_Count:
 
@@ -240,8 +243,6 @@ class Fire_Count:
         n = size(pos_data)
         pos_data_tras = zeros(n)
         pos_data_tras = (pos_data - pos_parameter[0])*resize
-        # for i in range(n):
-        #     pos_data_tras[i] = (pos_data[i] - pos_parameter[0]) * resize
         return pos_data_tras
 
     def algorithm(self):
@@ -266,7 +267,7 @@ class Fire_Count:
         for date in dates:
             # Seleccion de los datos por dia
             try:
-                data_per_day = daily_count.loc[date].copy()
+                data_per_day = self.FIRMS_data.get_data_from_date(date)
                 filename = "{}.csv".format(date.date())
                 filename = join(self.params["path data"],
                                 "Dates_data",
@@ -277,15 +278,15 @@ class Fire_Count:
                 self.count_fire(data_per_day)
                 # Conteo de los incendios para todo el dia
                 daily_sum = sum(self.count)
-                # Escritura de los resultados
                 # Lectura de la latitud y longitud
                 lat = array(data_per_day["latitude"])
                 lon = array(data_per_day["longitude"])
-            except:
+            except KeyError:
                 lon = array([])
                 lat = array([])
                 self.count = array([])
                 daily_sum = 0
+            # Escritura de los resultados
             results_file.write("{},{}\n".format(date.date(),
                                                 daily_sum))
             # Traslacion de las cordenadas hacia el espacio de la imagen
