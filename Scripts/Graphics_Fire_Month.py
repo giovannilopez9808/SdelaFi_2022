@@ -29,7 +29,7 @@ parameters = {
     "graphics file": "Fire_Per_Month.png",
     "City name": "Nuevo_Leon",
     "Days separation": 7,
-    "Y limit": 175,
+    "Y limit": 300,
     "Delta y": 25,
 }
 # Lectura de los parametros de cada ciudad
@@ -42,11 +42,7 @@ data = format_data(data)
 data = data.resample("MS").sum()
 # Extraccion de las fechas seleccionadas
 dates, years = obtain_ticks(data)
-# Limites de las graficas
-plt.subplots_adjust(left=0.121,
-                    right=0.952,
-                    bottom=0.162,
-                    top=0.924)
+plt.subplots(figsize=(10, 5))
 # Ploteo de los datos
 plt.plot(data.index,
          data["NI"],
@@ -63,14 +59,16 @@ plt.xlim(dates[0],
 plt.ylim(0,
          parameters["Y limit"])
 # Etiqueta en el eje y
-plt.ylabel("Número de Incendios diarios")
+plt.ylabel("Número de Incendios mensuales",
+           fontsize=13)
 # # Cambio en las etiquetas de los ejes x y y
 plt.xticks(dates,
            years,
-           rotation=45)
+           fontsize=13)
 plt.yticks(arange(0,
                   parameters["Y limit"]+parameters["Delta y"],
-                  parameters["Delta y"]))
+                  parameters["Delta y"]),
+           fontsize=13)
 # Creación del grid
 plt.grid(ls="--",
          color="grey",
