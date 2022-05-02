@@ -1,25 +1,10 @@
 \title{Metodologia}
-\begin{minipage}{0.81\linewidth}
-    La irradiancia solar Vis+NIR* del SIMA se midió con un piranómetro MetOne096 de sensibilidad entre $\left[400,1100\right]$nm. De ellas se seleccionan días despejados en el periodo 2015-2018. Por otro lado, la Ecuación de Transferencia Radiativa:
-    \begin{equation*}
-        dL_{\lambda}=\sigma_e \ \left(z\right) \left(\cdots - \frac{\omega\left(z\right)}{4\pi} \left[I_{0\lambda}p\left(\vec{s*},\vec{s};z \right)exp\left(-\int\limits_z^\infty \frac{\sigma_e(z')}{cos\theta^*(z')}dz' \right)\cdots \int\limits_{4\pi}\int\limits_{4\pi} L_{\lambda}(\vec{s'};z)p(\vec{s'},\vec{s};z)d^2\omega' \right]\right)\frac{dz}{cos\theta}
-    \end{equation*}
-    es resuelta por los modelos SMARTS y TUV$^{\left[2,5\right]}$ para obtener la irradiancia solar espectral (L$_\lambda$). Cada modelo se ejecuta para una fecha y hora del día con los siguientes valores de entrada:
-
-    \changefontsizes{9.5pt}
-    \begin{tabular}{|c|c|c|c|c|c|c|c|}
-        \hline
-        Modelo & [Lat, Lon, a.s.n.m] NE/NO           & Reflectividad & O$_3$ col       & NO$_2$ col DU        & Exp.               & Albedo de disp.   & AOD$_{550nm}$                                     \\
-               &                                     & de suelo      &                 &                      & Angström           & simple de aerosol &                                                   \\ \hline
-        TUV    & \multirow{2}{*}{25.75,-100.25,512m} & 0.06          & OMI-NASA DU     & \multirow{2}{*}{0.1} & \multirow{2}{*}{1} & 0.87              & \multirow{2}{*}{(variable)$^{\left[4,5 \right]}$} \\ \cline{1-1}
-        SMARTS &                                     & Concreto      & OMI-NASA atm-cm &                      &                    & urbano            &                                                   \\ \hline
-    \end{tabular}\vspace{0.2cm}\\
-    \changefontsizes{12pt}
-    Con un código propio se integró L$_\lambda$ entre $\left[400,1100\right]$nm para SMARTS y para TUV entre $\left[400,1000\right]$nm añadiendo una fracción aproximada a la integral en el rango espectral coincidente. Luego, la irradiancia Vis+NIR* se ajustó hasta que el AOD$_{500nm}$ logre una diferencia relativa (DR) $<$ 5\% al mediodía solar entre medición y modelo.
+\begin{minipage}{0.35\linewidth}
+    \centering
+    \includegraphics[width=1\linewidth]{Graphics/stations.eps}
+    \verde{Estaciones de monitoreo Ambiental}
 \end{minipage}
 \hspace{0.3cm}
-\begin{minipage}{0.18\linewidth}
-    \centering
-    % \includegraphics[scale=0.16]{instru.eps}
-    \verde{Instrumento de medición de la estación SIMA}
+\begin{minipage}{0.6\linewidth}
+    a
 \end{minipage}

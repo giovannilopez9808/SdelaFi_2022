@@ -1,6 +1,6 @@
 from numpy import array, shape, flipud, round, arange, size, zeros, sum, append
 import moviepy.video.io.ImageSequenceClip as Movie_maker
-from pandas import DataFrame, read_csv, to_datetime
+from pandas import DataFrame, read_csv, to_datetime, to_timedelta
 import matplotlib.pyplot as plt
 from os.path import join
 import datetime
@@ -114,6 +114,7 @@ class FIRMS_data:
         """
         data.index = to_datetime(data["acq_date"])
         data = data.drop(columns="acq_date")
+        data.index = data.index - to_timedelta(1, unit="D")
         return data
 
     def select_data(self):
